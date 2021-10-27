@@ -2,7 +2,7 @@ import GameBoard from "./components/GameBoard";
 
 function App() {
   return (
-    <div className="flex h-screen items-center justify-center bg-green-900">
+    <div className="flex min-h-screen items-center justify-center bg-green-900">
       <GameBoard />
     </div>
   );
