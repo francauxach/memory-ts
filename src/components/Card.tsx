@@ -4,13 +4,20 @@ function Card(props: any) {
   return (
     <div
       className={
-        "card rounded-xl p-3 bg-white relative " +
-        (props.card.selected ? "is-flipped" : "")
+        "card rounded-xl p-3 bg-white relative border-4 " +
+        (props.isPaired
+          ? "border-gray-500 hover:border-gray-700"
+          : props.card.selected
+          ? "border-yellow-500 hover:border-yellow-500"
+          : "is-flipped border-transparent hover:border-yellow-500")
       }
       onClick={props.onClick}
     >
       <img
-        className="card-content w-full h-full object-contain select-none"
+        className={
+          "card-content w-full h-full object-contain select-none " +
+          (props.isPaired ? "opacity-30" : "")
+        }
         src={props.card.image}
         alt="Card"
       />
