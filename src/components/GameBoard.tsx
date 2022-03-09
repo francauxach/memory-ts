@@ -6,10 +6,10 @@ class GameBoard extends React.Component {
     super(props);
 
     this.state = {
-      cards: [],
+      cards: Array(),
       loading: true,
-      selectedCards: [],
-      pairedCardsKeys: [],
+      selectedCards: Array(),
+      pairedCardsKeys: Array(),
       currentStep: 0,
     };
   }
@@ -99,21 +99,24 @@ class GameBoard extends React.Component {
 
   render() {
     return (
-      <div className="game-board grid grid-cols-7 gap-4 my-20 max-w-screen-lg">
+      <div className="flex flex-col items-center justify-center h-full">
         {this.state.loading ? (
-          <div>Loading...</div>
+          <div className="text-2xl italic font-bold text-white font-gochi">Loading...</div>
         ) : (
-          this.state.cards.map((card, index) => {
-            return (
-              <Card
-                key={card.key}
-                card={card}
-                isEven={index % 2}
-                isPaired={this.state.pairedCardsKeys.includes(card.code)}
-                onClick={() => this.selectCardByIndex(index)}
-              />
-            );
-          })
+          <div className="grid max-w-screen-lg grid-cols-7 gap-4 game-board">
+            {this.state.cards.map((card, index) => {
+                return (
+                  <Card
+                    key={card.key}
+                    card={card}
+                    isEven={index % 2}
+                    isPaired={this.state.pairedCardsKeys.includes(card.code)}
+                    onClick={() => this.selectCardByIndex(index)}
+                  />
+                );
+              })
+            }
+          </div>
         )}
       </div>
     );
